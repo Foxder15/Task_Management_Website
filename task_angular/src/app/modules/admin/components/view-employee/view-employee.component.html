@@ -1,0 +1,35 @@
+<div class="task-list">
+    <mat-card class="task-card" *ngFor="let employee of listOfEmployees">
+        <div class="task-details">
+            <div class="task-info">
+              
+                <div class="info-row">
+                    <span class="info-label">Name:</span>
+                    <span class="info-value">{{ employee.name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">email:</span>
+                    <span class="info-value">{{ employee.email }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">ROLE:</span>
+                    <span class="info-value">{{ employee.userRole }}</span>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="actions">
+                <button mat-icon-button color="accent" class="view-button" routerLink="/admin/employee-tasks/{{employee.id}}">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <a mat-icon-button color="primary" class="update-button"
+                    [routerLink]="'/admin/employee-details/' + employee.id + '/edit'">
+                    <mat-icon>edit</mat-icon>
+                </a>
+                <button mat-icon-button color="warn" class="delete-button" (click)="deleteUser(employee.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</div>
+

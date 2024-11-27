@@ -1,0 +1,43 @@
+<div class="container">
+    <mat-card style="background-color: rgb(25, 105, 45);">
+        <mat-card-title>USER FORM</mat-card-title>
+
+        <mat-card-content>
+            <form [formGroup]="updateUserForm">
+
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Name" required>
+
+                    <mat-error *ngIf="updateUserForm.get('name')?.invalid && updateUserForm.get('name')?.touched">
+                        Please enter a valid name
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="email" required>
+
+                    <mat-error *ngIf="updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched">
+                        Please enter a valid email
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="userRole" name="Role">
+                        <mat-option *ngFor="let role of listOfRoles" [value]="role">
+                            {{role}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="updateUserForm.get('userRole')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="accent" type="submit" [disabled]="updateUserForm.invalid" 
+                    (click)="updateUser()">Update</button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+

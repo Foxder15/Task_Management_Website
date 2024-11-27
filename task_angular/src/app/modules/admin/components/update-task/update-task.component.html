@@ -1,0 +1,64 @@
+<div class="container">
+    <mat-card style="background-color: rgb(25, 105, 45);">
+        <mat-card-title>Update Task</mat-card-title>
+
+        <mat-card-content>
+            <form [formGroup]="updateTaskForm">
+
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" placeholder="Title" formControlName="title"/>
+                    <mat-error *ngIf="updateTaskForm.get('title')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                    <mat-error *ngIf="updateTaskForm.get('description')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Due Date</mat-label>
+                    <input matInput [matDatepicker]="dueDatePicker" placeholder="Choose a due date" formControlName="dueDate"/>
+                    <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dueDatePicker></mat-datepicker>
+                    <mat-error *ngIf="updateTaskForm.get('dueDate')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Priority</mat-label>
+                    <mat-select formControlName="priority" name="Priority">
+                        <mat-option *ngFor="let priority of listOfPriorities" [value]="priority">
+                            {{priority}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="updateTaskForm.get('priority')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Task Status</mat-label>
+                    <mat-select formControlName="taskStatus" name="taskStatus">
+                        <mat-option *ngFor="let taskStatus of listOfTaskStatus" [value]="taskStatus">
+                            {{taskStatus}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="updateTaskForm.get('taskStatus')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="form-field" color="accent">
+                    <mat-label>Employee</mat-label>
+                    <mat-select formControlName="employeeId" name="employeeId">
+                        <mat-option *ngFor="let employee of listOfEmployees" [value]="employee.id">
+                            {{employee.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="updateTaskForm.get('employeeId')?.hasError('requied')">This Input Is Requied</mat-error>
+                </mat-form-field>
+    
+                <button mat-raised-button color="accent" type="submit" [disabled]="updateTaskForm.invalid" (click)="updateTask()">Update Task</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    
+</div>
+

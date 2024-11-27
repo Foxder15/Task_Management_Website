@@ -1,0 +1,30 @@
+<div *ngIf="!isEmployeeLoggedIn && !isAdminLoggedIn">
+  <mat-toolbar color="accent" class="navbar">
+    <span class="navbar-brand">Task Management Website</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
+    <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+  </mat-toolbar>
+</div>
+
+<div *ngIf="isAdminLoggedIn">
+  <mat-toolbar color="accent" class="navbar">
+    <span class="navbar-brand"></span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-button routerLink="/admin/task" routerLinkActive="active">Post Task</button>
+    <button mat-button routerLink="/admin/employee" routerLinkActive="active">Employee</button>
+    <button mat-button routerLink="/admin/add-employee" routerLinkActive="active">Add User</button>
+    <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+  </mat-toolbar>
+</div>
+
+<div *ngIf="isEmployeeLoggedIn">
+  <mat-toolbar color="accent" class="navbar">
+    <span class="navbar-brand">Task Storage</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/employee/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+  </mat-toolbar>
+</div>
+<router-outlet></router-outlet>
